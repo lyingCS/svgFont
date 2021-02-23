@@ -1,4 +1,5 @@
 import os
+from time import time
 import xml.etree.ElementTree as ET
 import transform as trans
 from myConfig import *
@@ -17,14 +18,28 @@ def init():
 # 	processFun.getAllSign(alpha,32)
 
 if __name__ == '__main__':
+	oT=time()
 	init()
-	digest = getDigest(key)
-	print("Your Key: "+key)
-	print("Your Digest: "+digest)
+	print("Init: "+str(time()-oT))
 
+	oT=time()
+	digest = getDigest(key)
+	print("Digest: "+str(time()-oT))
+
+	# print("Your Key: "+key)
+	# print("Your Digest: "+digest)
+
+	oT=time()
 	export()
+	print("Export: "+str(time()-oT))
+
+	oT=time()
 	trans.allProcessing(digest,alpha,beta)
+	print("Transform: "+str(time()-oT))
+
+	oT=time()
 	generate()
+	print("Generate: "+str(time()-oT))
 
 	# verify(PythonPath,alpha)
 	print("End!")
