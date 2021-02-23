@@ -10,7 +10,6 @@ os.chdir(cwd)
 
 def generate():
 	oldFont = fontforge.open(old_font_path)
-	print(oldFont)
 	newFont = fontforge.font()
 	for glyph in oldFont:
 		if oldFont[glyph].isWorthOutputting():
@@ -25,10 +24,10 @@ def generate():
 	newFont.fullname = fontName
 	newFont.familyname = fontName
 	newFont.fontname = fontName
-	try:
-		os.remove(new_font_path)	
-	except FileNotFoundError:
-		pass
+	# try:
+	# 	os.remove(new_font_path)	
+	# except FileNotFoundError:
+	# 	pass
 	newFont.generate(new_font_path)
 	print('Generate successfully!')
 if __name__=='__main__':

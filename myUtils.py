@@ -8,6 +8,6 @@ def cleanDir(path):
 		os.mkdir(path)
 	except FileExistsError:
 		pass
-	pathList = os.listdir(path)
-	for file in pathList:
-		os.remove(path+'/'+file)
+	# pathList = os.listdir(path)
+	# for file in pathList:
+	# 	os.remove(path+'/'+file)
