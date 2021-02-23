@@ -1,5 +1,5 @@
 ### 环境
-fontforge 使用软件带的moudle就行
+fontforge 使用软件带的module就行
 调用可以用*ffpython*文件下的ffpython运行.py文件
 
 
