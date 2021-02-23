@@ -1,14 +1,12 @@
-
+#conding=utf8
+from myConfig import *
+from myUtils import *
 import xml.etree.ElementTree as ET
 import os
 
-
-# %%
-
-def getInfo(s):
-    tree = ET.parse(s)
+def getInfo(text):
+    tree = ET.parse(text)
     return tree.getroot()[0].attrib['d']
-
 
 def path(s):
     ret = [['M']]
@@ -53,7 +51,7 @@ def process(ls, alpha, beta, a, b):
     return ls
 
 
-def ls2xml(ls):
+def list2xml(ls):
     ret = ""
     for i in ls:
         ret += " ".join(i)
@@ -66,7 +64,7 @@ def glphyProcessing(s1, s2, alpha, beta, ls):
     num = int(s1.split('_')[0].split('/')[-1])
     n = len(ls[0])
     #     print(num,n,num%n)
-    new = ls2xml(process(path(old), alpha, beta, ls[0][num % n], ls[1][num % n]))
+    new = list2xml(process(path(old), alpha, beta, ls[0][num % n], ls[1][num % n]))
     # print(old,new)
     tree.getroot()[0].attrib['d'] = new
     tree.write(s2)
@@ -84,40 +82,41 @@ def sign2ls(s):
 
 
 def allProcessing(sign, alpha, beta):
-    print(sign)
-    g = os.walk("./svg")
-    signLs = sign2ls(sign)
+    g = os.walk(svg_path)
+    signList = sign2ls(sign)
     for path, dir_list, file_list in g:
         for file_name in file_list:
-            tree = ET.parse("./svg/" + file_name)
+            inPath=svg_path+'/'+file_name
+            outPath=svg_out_path+'/'+file_name
+            tree = ET.parse(inPath)
             root = tree.getroot()
-            print(file_name)
+            # print(file_name)
             for child in root:
                 if ('d' in child.attrib.keys()):
-                    glphyProcessing("./svg/" + file_name, "./svg_out/" + file_name, alpha, beta, signLs)
+                    glphyProcessing(inPath, outPath, alpha, beta, signList)
                 else:
-                    res = open("./svg/" + file_name)
+                    res = open(inPath)
                     info = res.read()
-                    des = open("./svg_out/" + file_name, 'w+')
+                    des = open(outPath, 'w+')
                     des.write(info)
                     des.close()
                     res.close()
-    print('convert successfully!')
+    print('Transform successfully!')
 
 
 def getSign(s1, s2, alpha, sign):
-    ls1 = path(getInfo(s1))
-    ls2 = path(getInfo(s2))
+    list1 = path(getInfo(s1))
+    list2 = path(getInfo(s2))
     a = -1
     b = -1
     num = int(s1.split('_')[0].split('/')[-1])
     mp = {}
-    for i in range(len(ls1)):
-        if ls1[i][0] == 'q':
-            dx = int(ls1[i][3])
-            dy = int(ls2[i][4])
-            ddx = int(ls2[i][1]) - int(ls1[i][1])
-            ddy = int(ls2[i][2]) - int(ls1[i][2])
+    for i in range(len(list1)):
+        if list1[i][0] == 'q':
+            dx = int(list1[i][3])
+            dy = int(list2[i][4])
+            ddx = int(list2[i][1]) - int(list1[i][1])
+            ddy = int(list2[i][2]) - int(list1[i][2])
             if (dx // alpha) != 0:
                 a = ddx / (dx // alpha)
             if (dy // alpha) != 0:
@@ -130,25 +129,26 @@ def getSign(s1, s2, alpha, sign):
     return sign
 
 
-# %%
 
 def getAllSign(alpha, n):
     sign = ["?" for i in range(n)]
-    g = os.walk("./svg")
+    g = os.walk(svg_path)
     cnt = 1
     for path, dir_list, file_list in g:
         for file_name in file_list:
-            tree = ET.parse("./svg/" + file_name)
+            inPath=svg_path+'/'+ file_name
+            outPath=svg_out_path+'/'+file_name
+            tree = ET.parse(inPath)
             root = tree.getroot()
-            print(file_name)
+            # print(file_name)
             if ('d' not in root[0].attrib.keys()):
                 continue
-            sign = getSign("./svg/" + file_name, "./svg_out/" + file_name, alpha, sign)
+            sign = getSign(inPath,outPath, alpha,sign)
             cnt += 1
-            print(''.join(sign))
+            # print(''.join(sign))
             if (cnt % 100 == 0):
                 if (sign.count("?") == 0):
                     break
     t = ''.join(sign)
-    print(t)
+    # print(t)
     return t

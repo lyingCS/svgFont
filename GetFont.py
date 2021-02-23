@@ -1,18 +1,14 @@
 import os
-import hashlib
 import xml.etree.ElementTree as ET
-import processFun
+import transform as trans
+from myConfig import *
+from myUtils import *
+from export import *
+from generate import *
 
 def init():
-	svg_path = "./svg"
-	svg_out_path = "./svg_out"
-	pathList = os.listdir(svg_path)
-	for file in pathList:
-		os.remove(svg_path+'/'+file)
-	pathList = os.listdir(svg_out_path)
-	for file in pathList:
-		os.remove(svg_out_path+'/'+file)
-
+	cleanDir(svg_path)
+	cleanDir(svg_out_path)
 # def verify(PythonPath,alpha):
 # 	init()
 # 	Command = PythonPath+' '+'getVerFile.py'
@@ -21,22 +17,15 @@ def init():
 # 	processFun.getAllSign(alpha,32)
 
 if __name__ == '__main__':
-	key = "abcd1223456@uestc.com"
-	key_md5 = hashlib.md5(key.encode('utf-8')).hexdigest()
-	print(key_md5)
-	alpha = 30
-	PythonPath = "ffpython\\python.exe"
-	impofilePath = 'import.py'
-	expofilePath = 'export.py'
 	init()
-	Command = PythonPath+' '+expofilePath
-	os.system(Command)
-	processFun.allProcessing(key_md5,alpha,60)
-	Command = PythonPath+' '+impofilePath
-	os.system(Command)
-	print("success!")
+	digest = getDigest(key)
+	print("Your Key: "+key)
+	print("Your Digest: "+digest)
+
+	export()
+	trans.allProcessing(digest,alpha,beta)
+	generate()
+
 	# verify(PythonPath,alpha)
+	print("End!")
 	exit(0)
-
-
-
