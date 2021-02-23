@@ -26,10 +26,10 @@ def generate():
 	newFont.familyname = fontName
 	newFont.fontname = fontName
 	try:
-		newFont.generate(new_font_path)
-	except FileExistsError as e:
-		os.remove(new_font_path)
-		newFont.generate(new_font_path)
+		os.remove(new_font_path)	
+	except FileNotFoundError:
+		pass
+	newFont.generate(new_font_path)
 	print('Generate successfully!')
 if __name__=='__main__':
 	generate()
