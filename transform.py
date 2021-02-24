@@ -130,25 +130,18 @@ def getSign(s1, s2, alpha, sign):
 
 
 
-def getAllSign(alpha, n):
-    sign = ["?" for i in range(n)]
-    g = os.walk(svg_path)
-    cnt = 1
-    for path, dir_list, file_list in g:
-        for file_name in file_list:
-            inPath=svg_path+'/'+ file_name
-            outPath=svg_out_path+'/'+file_name
-            tree = ET.parse(inPath)
-            root = tree.getroot()
-            # print(file_name)
-            if ('d' not in root[0].attrib.keys()):
-                continue
-            sign = getSign(inPath,outPath, alpha,sign)
-            cnt += 1
-            # print(''.join(sign))
-            if (cnt % 100 == 0):
-                if (sign.count("?") == 0):
-                    break
-    t = ''.join(sign)
+def oneByoneGetAllSign(alpha,n,sign,file_name):
+    inPath=svg_path+'/'+file_name
+    outPath=svg_out_path+'/'+file_name
+    tree = ET.parse(outPath)
+    root = tree.getroot()
+    # print(file_name)
+    if ('d' not in root[0].attrib.keys()):
+        return -1
+    sign = getSign(inPath,outPath, alpha,sign)
+    if (sign.count("?") == 0):
+        t = ''.join(sign)
+        return t
+    else:
+        return sign
     # print(t)
-    return t
