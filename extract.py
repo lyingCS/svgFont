@@ -9,6 +9,8 @@ from transform import *
 def getSign(s1, s2, sign):
     list1 = path(getInfo(s1))
     list2 = unbeautifySmooth(path(getInfo(s2)))
+    if len(list1)!=len(list2):
+        return sign
     a = -1
     b = -1
     num = int(s1.split('_')[0].split('/')[-1])
