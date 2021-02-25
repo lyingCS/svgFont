@@ -18,6 +18,7 @@ def parseArgs():
 def init():
 	cleanDir(svg_path)
 	cleanDir(svg_out_path)
+	cleanDir(svg_ver_path)
 	parseArgs()
 
 if __name__ == '__main__':

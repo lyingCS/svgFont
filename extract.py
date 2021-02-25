@@ -18,9 +18,9 @@ def getSign(s1, s2, sign):
     for i in range(len(list1)):
         if list1[i][0] == 'q':
             dx = int(list1[i][3])
-            dy = int(list2[i][4])
-            ddx = int(list2[i][1]) - int(list1[i][1])
-            ddy = int(list2[i][2]) - int(list1[i][2])
+            dy = int(list1[i][4])
+            ddx = int(list2[i][1]) - int(list1[i][1])-1
+            ddy = int(list2[i][2]) - int(list1[i][2])-1
             if (dx // alpha) != 0:
                 a = ddx / (dx // alpha)
             if (dy // alpha) != 0:
@@ -30,13 +30,15 @@ def getSign(s1, s2, sign):
         sign[int(num % n)] = hex(int(a))[2:]
     if (b != -1):
         sign[int(num % n + n)] = hex(int(b))[2:]
+    if sign[35]=='6':
+        print(s1,s2)
     return sign
 
 
 
 def oneByoneGetAllSign(sign,filename):
     inPath=svg_path+'/'+filename
-    outPath=svg_out_path+'/'+filename
+    outPath=svg_ver_path+'/'+filename
     tree = ET.parse(outPath)
     root = tree.getroot()
     if ('d' not in root[0].attrib.keys()):

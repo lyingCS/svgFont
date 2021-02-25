@@ -18,7 +18,7 @@ def verify():
         index=str(F[name].unicode)
         width=str(F[name].width)
         filename = index+'_'+name+'_'+width+'.'+ext
-        F[name].export(svg_out_path+'/'+filename)
+        F[name].export(svg_ver_path+'/'+filename)
         result = oneByoneGetAllSign(sign,filename)
         if result == -1:
             continue
