@@ -12,7 +12,8 @@ def export():
 	F = fontforge.open(old_font_path)
 	for name in F:
 		index=str(F[name].unicode)
-		filename = svg_path+'/'+index+'_'+name+ '.'+ext
+		wid=str(F[name].width)
+		filename = svg_path+'/'+index+'_'+name+'_'+str(wid)+'.'+ext
 		F[name].export(filename)
 	print('Export successfully!')
 if __name__=='__main__':

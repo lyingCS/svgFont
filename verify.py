@@ -1,6 +1,7 @@
 from myConfig import *
 from myUtils import *
 from transform import *
+from extractInfo import *
 import os
 
 cwd=os.getcwd()
@@ -16,7 +17,8 @@ def verify():
     F = fontforge.open(verify_font_path)
     for name in F:
         index=str(F[name].unicode)
-        filename = index+'_'+name+ '.'+ext
+        wid=str(F[name].width)
+        filename = index+'_'+name+'_'+wid+'.'+ext
         F[name].export(svg_out_path+'/'+filename)
         result = oneByoneGetAllSign(sign,filename)
         if result == -1:
@@ -27,7 +29,7 @@ def verify():
         print('Verify successfully! '+" Digest is "+result)
         return True
     else:
-        print('Fail to Verify')
+        print('Fail to Verify',result)
         return False
 
 if __name__ == '__main__':

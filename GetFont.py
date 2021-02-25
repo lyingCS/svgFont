@@ -1,4 +1,5 @@
 import os
+import sys
 from time import time
 import xml.etree.ElementTree as ET
 import transform as trans
@@ -7,12 +8,15 @@ from myUtils import *
 from export import *
 from generate import *
 from verify import *
+from extractInfo import *
+from beautify import *
 
 def parseArgs():
 	leng=len(sys.argv)
 	global key
 	if(leng>1):
 		key=sys.argv[1]
+
 def init():
 	cleanDir(svg_path)
 	cleanDir(svg_out_path)
