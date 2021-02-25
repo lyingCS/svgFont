@@ -28,26 +28,26 @@ def process(ls, a, b):
             dy = int(ls[i][4])
             ddx = (dx // alpha) * a
             ddy = (dy // alpha) * b
-            ls[i][1] = str(int(ls[i][1]) + ddx)
-            ls[i][2] = str(int(ls[i][2]) + ddy)
+            ls[i][1] = str(int(ls[i][1]) + ddx + 1)
+            ls[i][2] = str(int(ls[i][2]) + ddy + 1)
         elif ls[i][0] == 'h':
             dx = int(ls[i][1])
             dy = 0
             cx = dx // 2
             cy = (dx // beta) * b
-            ls[i] = ['q', str(cx), str(cy), str(dx), str(dy)]
+            ls[i] = ['q', str(cx), str(cy + 1), str(dx), str(dy)]
         elif ls[i][0] == 'v':
             dx = 0
             dy = int(ls[i][1])
             cx = (dy // beta) * a
             cy = dy // 2
-            ls[i] = ['q', str(cx), str(cy), str(dx), str(dy)]
+            ls[i] = ['q', str(cx + 1), str(cy), str(dx), str(dy)]
         elif (ls[i][0] == 'l'):
             dx = int(ls[i][1])
             dy = int(ls[i][2])
             cx = dx // 2 + (dx // beta) * a
             cy = dy // 2 + (dy // beta) * b
-            ls[i] = ['q', str(cx), str(cy), str(dx), str(dy)]
+            ls[i] = ['q', str(cx + 1), str(cy + 1), str(dx), str(dy)]
 
     return ls
 
