@@ -1,5 +1,5 @@
 fontName = "Myfont"
-ff_work_directory = "E:/Program Files/FontForgeBuilds/bin"  #! change this into your bin path
+ff_work_directory = "D:/FontForgeBuilds/bin"  #! change this into your bin path
 key = "abcd1223456@uestc.com"          # here key is just an email addr
 
 ext='svg'

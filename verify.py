@@ -1,7 +1,6 @@
 from myConfig import *
 from myUtils import *
-from transform import *
-from extractInfo import *
+from extract import *
 import os
 
 cwd=os.getcwd()
@@ -17,8 +16,8 @@ def verify():
     F = fontforge.open(verify_font_path)
     for name in F:
         index=str(F[name].unicode)
-        wid=str(F[name].width)
-        filename = index+'_'+name+'_'+wid+'.'+ext
+        width=str(F[name].width)
+        filename = index+'_'+name+'_'+width+'.'+ext
         F[name].export(svg_out_path+'/'+filename)
         result = oneByoneGetAllSign(sign,filename)
         if result == -1:

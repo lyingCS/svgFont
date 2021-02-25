@@ -8,8 +8,6 @@ from myUtils import *
 from export import *
 from generate import *
 from verify import *
-from extractInfo import *
-from beautify import *
 
 def parseArgs():
 	leng=len(sys.argv)

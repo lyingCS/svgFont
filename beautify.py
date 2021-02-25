@@ -6,6 +6,7 @@ import os
 import math
 
 def unbeautifySmooth(ls):
+	#TODO rename
     j = 0 
     for i in range(len(ls)):
         if ls[j][0] == 'l':

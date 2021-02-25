@@ -40,7 +40,7 @@ def oneByoneGetAllSign(sign,filename):
     if ('d' not in root[0].attrib.keys()):
         return -1    #num
     getSign(inPath,outPath,sign)
-    if (sign.count("?") == 0):
+    if (sign.count("?") == 0):  #TODO maybe after
         return ''.join(sign) #str
     else:
         return sign #list
