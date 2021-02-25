@@ -12,5 +12,4 @@ verify_font_path='out.ttf'
 
 alpha = 30
 beta = 60
-key_len = 32
 # ask zcs for details about that

@@ -19,7 +19,7 @@ def path(s):
     return ret
 
 
-def process(ls, alpha, beta, a, b):
+def process(ls, a, b):
     #     print(dx,dy)
     for i in range(len(ls)):
         if ls[i][0] == 'q':
@@ -58,13 +58,13 @@ def list2xml(ls):
     return ret
 
 
-def glphyProcessing(s1, s2, alpha, beta, ls):
+def glphyProcessing(s1, s2, ls):
     tree = ET.parse(s1)
     old = tree.getroot()[0].attrib['d']
     num = int(s1.split('_')[0].split('/')[-1])
     n = len(ls[0])
     #     print(num,n,num%n)
-    new = list2xml(process(path(old), alpha, beta, ls[0][num % n], ls[1][num % n]))
+    new = list2xml(process(path(old), ls[0][num % n], ls[1][num % n]))
     # print(old,new)
     tree.getroot()[0].attrib['d'] = new
     tree.write(s2)
@@ -81,7 +81,7 @@ def sign2ls(s):
     return [lsx, lsy]
 
 
-def allProcessing(sign, alpha, beta):
+def allProcessing(sign):
     g = os.walk(svg_path)
     signList = sign2ls(sign)
     for path, dir_list, file_list in g:
@@ -93,7 +93,7 @@ def allProcessing(sign, alpha, beta):
             # print(file_name)
             for child in root:
                 if ('d' in child.attrib.keys()):
-                    glphyProcessing(inPath, outPath, alpha, beta, signList)
+                    glphyProcessing(inPath, outPath,signList)
                 else:
                     res = open(inPath)
                     info = res.read()
@@ -104,7 +104,7 @@ def allProcessing(sign, alpha, beta):
     print('Transform successfully!')
 
 
-def getSign(s1, s2, alpha, sign):
+def getSign(s1, s2, sign):
     list1 = path(getInfo(s1))
     list2 = path(getInfo(s2))
     a = -1
@@ -130,18 +130,15 @@ def getSign(s1, s2, alpha, sign):
 
 
 
-def oneByoneGetAllSign(alpha,n,sign,file_name):
-    inPath=svg_path+'/'+file_name
-    outPath=svg_out_path+'/'+file_name
+def oneByoneGetAllSign(sign,filename):
+    inPath=svg_path+'/'+filename
+    outPath=svg_out_path+'/'+filename
     tree = ET.parse(outPath)
     root = tree.getroot()
-    # print(file_name)
     if ('d' not in root[0].attrib.keys()):
-        return -1
-    sign = getSign(inPath,outPath, alpha,sign)
+        return -1    #num
+    getSign(inPath,outPath,sign)
     if (sign.count("?") == 0):
-        t = ''.join(sign)
-        return t
+        return ''.join(sign) #str
     else:
-        return sign
-    # print(t)
+        return sign #list

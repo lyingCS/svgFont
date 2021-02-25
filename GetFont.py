@@ -6,16 +6,11 @@ from myConfig import *
 from myUtils import *
 from export import *
 from generate import *
+from verify import *
 
 def init():
 	cleanDir(svg_path)
 	cleanDir(svg_out_path)
-# def verify(PythonPath,alpha):
-# 	init()
-# 	Command = PythonPath+' '+'getVerFile.py'
-# 	os.system(Command)
-# 	print("start verifying")
-# 	processFun.getAllSign(alpha,32)
 
 if __name__ == '__main__':
 	oT=time()
@@ -27,20 +22,23 @@ if __name__ == '__main__':
 	print("Digest: "+str(time()-oT))
 
 	# print("Your Key: "+key)
-	# print("Your Digest: "+digest)
+	print("Your Digest: "+digest)
 
 	oT=time()
 	export()
 	print("Export: "+str(time()-oT))
 
 	oT=time()
-	trans.allProcessing(digest,alpha,beta)
+	trans.allProcessing(digest)
 	print("Transform: "+str(time()-oT))
 
 	oT=time()
 	generate()
 	print("Generate: "+str(time()-oT))
 
-	# verify(PythonPath,alpha)
+	oT=time()
+	verify()
+	print("Verify: "+str(time()-oT))
+
 	print("End!")
 	exit(0)
