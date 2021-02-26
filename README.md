@@ -1,12 +1,10 @@
 ### 环境
-fontforge python3 gmssl4py
+fontforge python3
 
 ---
 ### 配置
 
 相关配置均在`myConfig.py`文件中，务必按照注释操作
-
-将`misc`中的`gmssl`解压到`fontforge`下的`FontForgeBuilds\lib\python`中
 
 ----
 
