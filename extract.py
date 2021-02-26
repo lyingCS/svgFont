@@ -17,14 +17,16 @@ def getSign(s1, s2, sign):
     mp = {}
     for i in range(len(list1)):
         if list1[i][0] == 'q':
-            dx = int(list1[i][3])
-            dy = int(list1[i][4])
-            ddx = int(list2[i][1]) - int(list1[i][1])-1
-            ddy = int(list2[i][2]) - int(list1[i][2])-1
-            if (dx // alpha) != 0:
-                a = ddx / (dx // alpha)
-            if (dy // alpha) != 0:
-                b = ddy / (dy // alpha)
+        	if list2[i][0] != 'q':
+        		continue
+        	dx = int(list1[i][3])
+        	dy = int(list1[i][4])
+        	ddx = int(list2[i][1]) - int(list1[i][1]) - 1
+        	ddy = int(list2[i][2]) - int(list1[i][2]) - 1
+        	if (dx // alpha) != 0:
+        		a = ddx / (dx // alpha)
+        	if (dy // alpha) != 0:
+        		b = ddy / (dy // alpha)
     n = (len(sign) / 2)
     if a != -1:
         sign[int(num % n)] = hex(int(a))[2:]
