@@ -1,6 +1,8 @@
+import pickle
+
 fontName = "Myfont"
-ff_work_directory = "E:/Program Files/FontForgeBuilds/bin"  #! change this into your bin path
-key = "abcd1223456@uestc.com"          # here key is just an email addr
+ff_work_directory = "D:/Program Files/FontForgeBuilds/bin"  #! change this into your bin path
+key = "3312280576@qq.com"          # here key is just an email addr
 
 ext='svg'
 svg_path = "svg"
@@ -11,7 +13,7 @@ old_font_path='fz.ttf'
 new_font_path='out.ttf'
 verify_font_path='out.ttf'
 
-alpha = 30
-beta = 60
+with open('dalpha.dat', 'rb') as f:
+    dalpha=pickle.load(f)
 gama=10
 # ask zcs for details about that

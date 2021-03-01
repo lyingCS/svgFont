@@ -23,10 +23,10 @@ def getSign(s1, s2, sign):
         	dy = int(list1[i][4])
         	ddx = int(list2[i][1]) - int(list1[i][1]) - 1
         	ddy = int(list2[i][2]) - int(list1[i][2]) - 1
-        	if (dx // alpha) != 0:
-        		a = ddx / (dx // alpha)
-        	if (dy // alpha) != 0:
-        		b = ddy / (dy // alpha)
+        	if (dx // dalpha[s1]) != 0:
+        		a = ddx / (dx // dalpha[s1])
+        	if (dy // dalpha[s1]) != 0:
+        		b = ddy / (dy // dalpha[s1])
     n = (len(sign) / 2)
     if a != -1:
         sign[int(num % n)] = hex(int(a))[2:]

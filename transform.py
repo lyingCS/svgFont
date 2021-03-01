@@ -20,33 +20,33 @@ def path(s):
     return ret
 
 
-def process(ls, a, b):
+def process(ls, a, b, inPath):
     #     print(dx,dy)
     for i in range(len(ls)):
         if ls[i][0] == 'q':
             dx = int(ls[i][3])
             dy = int(ls[i][4])
-            ddx = (dx // alpha) * a
-            ddy = (dy // alpha) * b
+            ddx = (dx // dalpha[inPath]) * a
+            ddy = (dy // dalpha[inPath]) * b
             ls[i][1] = str(int(ls[i][1]) + ddx+1)
             ls[i][2] = str(int(ls[i][2]) + ddy+1)
         elif ls[i][0] == 'h':
             dx = int(ls[i][1])
             dy = 0
             cx = dx // 2
-            cy = (dx // beta) * b
+            cy = (dx // dalpha[inPath]) * b
             ls[i] = ['q', str(cx), str(cy+1), str(dx), str(dy)]
         elif ls[i][0] == 'v':
             dx = 0
             dy = int(ls[i][1])
-            cx = (dy // beta) * a
+            cx = (dy // dalpha[inPath]) * a
             cy = dy // 2
             ls[i] = ['q', str(cx+1), str(cy), str(dx), str(dy)]
         elif (ls[i][0] == 'l'):
             dx = int(ls[i][1])
             dy = int(ls[i][2])
-            cx = dx // 2 + (dx // beta) * a
-            cy = dy // 2 + (dy // beta) * b
+            cx = dx // 2 + (dx // dalpha[inPath]) * a
+            cy = dy // 2 + (dy // dalpha[inPath]) * b
             ls[i] = ['q', str(cx+1), str(cy+1), str(dx), str(dy)]
 
     return ls
@@ -65,7 +65,7 @@ def glphyProcessing(s1, s2, ls):
     num = int(s1.split('_')[0].split('/')[-1])
     n = len(ls[0])
     #     print(num,n,num%n)
-    new = list2xml(beautifySmooth(process(path(old), ls[0][num % n], ls[1][num % n])))
+    new = list2xml(beautifySmooth(process(path(old), ls[0][num % n], ls[1][num % n],s1)))
     # print(old,new)
     tree.getroot()[0].attrib['d'] = new
     tree.write(s2)
