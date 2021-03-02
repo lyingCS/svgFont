@@ -37,9 +37,8 @@ if __name__ == '__main__':
 	export()
 	print("Export: "+str(time()-oT))
 
-	h=['f' for i in range(64)]
 	oT=time()
-	trans.allProcessing(h)
+	trans.allProcessing(digest)
 	print("Transform: "+str(time()-oT))
 
 	oT=time()

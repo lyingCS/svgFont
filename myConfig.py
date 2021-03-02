@@ -13,7 +13,7 @@ old_font_path='fz.ttf'
 new_font_path='out.ttf'
 verify_font_path='out.ttf'
 
-with open('dalpha.dat', 'rb') as f:
+with open('dalpha130.dat', 'rb') as f:
     dalpha=pickle.load(f)
 gama=10
 # ask zcs for details about that
