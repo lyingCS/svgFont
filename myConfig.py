@@ -11,7 +11,7 @@ old_font_path='fz.ttf'
 new_font_path='out.ttf'
 verify_font_path='out.ttf'
 
-alpha = 30
+alpha = 40
 beta = 60
 gama=10
 # ask zcs for details about that
