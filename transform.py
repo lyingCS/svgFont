@@ -35,7 +35,7 @@ def process(ls, a, b):
             dy = 0
             cx = dx // 2
             cy = (dx // beta) * b
-            ls[i] = ['q', str(cx), str(cy+1), str(dx), str(dy)]
+            ls[i] = ['q', str(cx), str(-cy+1), str(dx), str(dy)]
         elif ls[i][0] == 'v':
             dx = 0
             dy = int(ls[i][1])
