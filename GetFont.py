@@ -9,19 +9,13 @@ from export import *
 from generate import *
 from verify import *
 
-def parseArgs():
-	leng=len(sys.argv)
-	global key
-	if(leng>1):
-		key=sys.argv[1]
-
 def init():
 	cleanDir(svg_path)
 	cleanDir(svg_out_path)
 	cleanDir(svg_ver_path)
-	parseArgs()
 
 if __name__ == '__main__':
+	# print(key,alpha,beta,gama)
 	oT=time()
 	init()
 	print("Init: "+str(time()-oT))
