@@ -23,8 +23,11 @@ leng=len(sys.argv)
 if(leng>1):
 	key=sys.argv[1]
 if(leng>2):
-	alpha=sys.argv[2]
+	new_font_path=sys.argv[2]
+	verify_font_path=sys.argv[2]
 if(leng>3):
-	beta=sys.argv[3]
+	alpha=sys.argv[3]
 if(leng>4):
-	gama=sys.argv[4]
+	beta=sys.argv[4]
+if(leng>5):
+	gama=sys.argv[5]

@@ -31,6 +31,7 @@ def generate():
 	# 	os.remove(new_font_path)	
 	# except FileNotFoundError:
 	# 	pass
+	cleanDir(os.path.dirname(new_font_path))
 	newFont.generate(new_font_path)
 	print('Generate successfully!')
 if __name__=='__main__':
