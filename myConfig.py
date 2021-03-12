@@ -2,7 +2,7 @@ import sys
 import inspect, os
 scriptDir=os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 fontName = "Myfont"
-ff_work_directory = "D:/FontForgeBuilds/bin"  #! change this into your bin path
+ff_work_directory = "D:/Program Files/FontForgeBuilds/bin"  #! change this into your bin path
 key = "abcd1223456@uestc.com"          # here key is just an email addr
 
 ext='svg'
@@ -22,6 +22,7 @@ gama = 10
 leng=len(sys.argv)
 if(leng>1):
 	key=sys.argv[1]
+	fontName=key
 if(leng>2):
 	new_font_path=sys.argv[2]
 	verify_font_path=sys.argv[2]
