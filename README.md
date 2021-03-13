@@ -8,10 +8,10 @@ fontforge python3
 
 ----
 
-### module
+### 引用包
 
 #### gmssl
-提供SM3签名算法
+提供SM2和SM3等国密算法
 
 ---
 ### 文件说明
@@ -38,7 +38,7 @@ fontforge python3
 ---
 
 #### 6. verify.py
-调用extract.py中的函数从*out.ttf*中提取出信息。
+调用extract.py中的函数从*out.ttf*中提取出信息，并加以验证。
 
 ---
 
