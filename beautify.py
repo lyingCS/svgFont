@@ -15,7 +15,7 @@ def unbeautifySmooth(ls):
             j += 1
     return ls
 
-def beautifySmooth(ls):
+def Smooth(ls):
     i=0
     while i<len(ls)-1:
 #         print(i)
@@ -90,4 +90,17 @@ def beautifySmooth(ls):
                     ls[i+1][4]=str(dy2-ldy)
                     ls.insert(i+1,['l',str(-ldx),str(ldy)])
         i+=1
+    return ls
+
+def tilt(ls, a):
+    #     print(dx,dy)
+    for i in range(len(ls)):
+        if ls[i][0] == 'q':
+            ddx = int(ls[i][1])-int(ls[i][2])*a
+            dx = int(ls[i][3])-int(ls[i][4])*a
+            ls[i][1] = str(ddx)
+            ls[i][3] = str(dx)
+        elif ls[i][0]=='M':
+            dx=int(ls[i][1])-int(ls[i][2])*a
+            ls[i][1]=str(dx)
     return ls

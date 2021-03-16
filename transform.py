@@ -65,7 +65,7 @@ def glphyProcessing(s1, s2, ls):
     num = int(s1.split('_')[0].split('/')[-1])
     n = len(ls[0])
     #     print(num,n,num%n)
-    new = list2xml(beautifySmooth(process(path(old), ls[0][num % n], ls[1][num % n])))
+    new = list2xml(tilt(process(path(old), ls[0][num % n], ls[1][num % n]),0.2))
     # print(old,new)
     tree.getroot()[0].attrib['d'] = new
     tree.write(s2)
