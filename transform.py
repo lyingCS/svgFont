@@ -20,33 +20,37 @@ def path(s):
     return ret
 
 
-def process(ls, a, b):
+def process(ls, a, b, c, d):
     #     print(dx,dy)
     for i in range(len(ls)):
         if ls[i][0] == 'q':
-            dx = int(ls[i][3])
-            dy = int(ls[i][4])
-            ddx = (dx // alpha) * a
-            ddy = (dy // alpha) * b
-            ls[i][1] = str(int(ls[i][1]) + ddx+1)
-            ls[i][2] = str(int(ls[i][2]) + ddy+1)
+            dx = int(eval(ls[i][3]))
+            dy = int(eval(ls[i][4]))
+            ddx = (dx // alpha) * a//2
+            ddy = (dy // alpha) * b//2
+            ls[i][1] = str(int(eval(ls[i][1])) + ddx+1)
+            ls[i][2] = str(int(eval(ls[i][2])) + ddy+1)
         elif ls[i][0] == 'h':
-            dx = int(ls[i][1])
+            dx = int(eval(ls[i][1]))
             dy = 0
-            cx = dx // 2
-            cy = (dx // beta) * b
-            ls[i] = ['q', str(cx), str(-cy+1), str(dx), str(dy)]
+            cx1 = dx // (2+d)
+            cx2=dx-cx1
+            cy1 = (dx // beta) * (b-8)
+            cy2=-cy1
+            ls[i] = ['c',str(cx1), str(-cy1+1), str(cx2),str(-cy2+1),str(dx), str(dy)]
         elif ls[i][0] == 'v':
             dx = 0
-            dy = int(ls[i][1])
-            cx = (dy // beta) * a
-            cy = dy // 2
-            ls[i] = ['q', str(cx+1), str(cy), str(dx), str(dy)]
+            dy = int(eval(ls[i][1]))
+            cx1 = (dy // beta) * (a-8)
+            cx2=-cx1
+            cy1 = dy // (2+c)
+            cy2 = dy-cy1
+            ls[i] = ['c', str(cx1+1), str(cy1), str(cx2+1),str(cy2),str(dx), str(dy)]
         elif (ls[i][0] == 'l'):
-            dx = int(ls[i][1])
-            dy = int(ls[i][2])
-            cx = dx // 2 + (dx // beta) * a
-            cy = dy // 2 + (dy // beta) * b
+            dx = int(eval(ls[i][1]))
+            dy = int(eval(ls[i][2]))
+            cx = dx // 2 + (dx // beta) * a//2
+            cy = dy // 2 + (dy // beta) * b//2
             ls[i] = ['q', str(cx+1), str(cy+1), str(dx), str(dy)]
 
     return ls
@@ -65,7 +69,9 @@ def glphyProcessing(s1, s2, ls):
     num = int(s1.split('_')[0].split('/')[-1])
     n = len(ls[0])
     #     print(num,n,num%n)
-    new = list2xml(tilt(process(path(old), ls[0][num % n], ls[1][num % n]),0.2))
+    partition=num%n
+    partition2=(partition+1)%n
+    new = list2xml(tilt(Smooth(process(path(old), ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2])),0.2))
     # print(old,new)
     tree.getroot()[0].attrib['d'] = new
     tree.write(s2)

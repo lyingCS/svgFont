@@ -103,4 +103,11 @@ def tilt(ls, a):
         elif ls[i][0]=='M':
             dx=int(ls[i][1])-int(ls[i][2])*a
             ls[i][1]=str(dx)
+        elif ls[i][0]=='c':
+            cx1=int(ls[i][1])-int(ls[i][2])*a
+            cx2=int(ls[i][3])-int(ls[i][4])*a
+            dx=int(ls[i][5])-int(ls[i][6])*a
+            ls[i][1]=str(cx1)
+            ls[i][3]=str(cx2)
+            ls[i][5]=str(dx)
     return ls

@@ -31,6 +31,7 @@ if __name__ == '__main__':
 	export()
 	print("Export: "+str(time()-oT))
 
+	# digest=['0' for i in range(64)]
 	oT=time()
 	trans.allProcessing(digest)
 	print("Transform: "+str(time()-oT))
@@ -39,9 +40,9 @@ if __name__ == '__main__':
 	generate()
 	print("Generate: "+str(time()-oT))
 
-	oT=time()
-	verify()
-	print("Verify: "+str(time()-oT))
+	# oT=time()
+	# verify()
+	# print("Verify: "+str(time()-oT))
 
 	print("End!")
 	exit(0)

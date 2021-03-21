@@ -3,7 +3,7 @@ import inspect, os
 scriptDir=os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 fontName = "Myfont"
 ff_work_directory = "D:/Program Files/FontForgeBuilds/bin"  #! change this into your bin path
-key = "abcd1223456@uestc.com"          # here key is just an email addr
+key = "3312280576@qq.com"          # here key is just an email addr
 
 ext='svg'
 svg_path = scriptDir+"/svg"
@@ -14,8 +14,8 @@ old_font_path=scriptDir+'/fz.ttf'
 new_font_path=scriptDir+'/out.ttf'
 verify_font_path=scriptDir+'/out.ttf'
 
-alpha = 40
-beta = 60
+alpha = 20
+beta = 30
 gama = 10
 # ask zcs for details about that
 
