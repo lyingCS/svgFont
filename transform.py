@@ -24,14 +24,14 @@ def process(ls, a, b, c, d):
     #     print(dx,dy)
     for i in range(len(ls)):
         if ls[i][0] == 'q':
-            dx = int(eval(ls[i][3]))
-            dy = int(eval(ls[i][4]))
+            dx = eval(ls[i][3])
+            dy = eval(ls[i][4])
             ddx = (dx // alpha) * a//2
             ddy = (dy // alpha) * b//2
-            ls[i][1] = str(int(eval(ls[i][1])) + ddx+1)
-            ls[i][2] = str(int(eval(ls[i][2])) + ddy+1)
+            ls[i][1] = str(eval(ls[i][1]) + ddx+1)
+            ls[i][2] = str(eval(ls[i][2]) + ddy+1)
         elif ls[i][0] == 'h':
-            dx = int(eval(ls[i][1]))
+            dx = eval(ls[i][1])
             dy = 0
             cx1 = dx // (2+d)
             cx2=dx-cx1
@@ -40,15 +40,15 @@ def process(ls, a, b, c, d):
             ls[i] = ['c',str(cx1), str(-cy1+1), str(cx2),str(-cy2+1),str(dx), str(dy)]
         elif ls[i][0] == 'v':
             dx = 0
-            dy = int(eval(ls[i][1]))
+            dy = eval(ls[i][1])
             cx1 = (dy // beta) * (a-8)
             cx2=-cx1
             cy1 = dy // (2+c)
             cy2 = dy-cy1
             ls[i] = ['c', str(cx1+1), str(cy1), str(cx2+1),str(cy2),str(dx), str(dy)]
         elif (ls[i][0] == 'l'):
-            dx = int(eval(ls[i][1]))
-            dy = int(eval(ls[i][2]))
+            dx = eval(ls[i][1])
+            dy = eval(ls[i][2])
             cx = dx // 2 + (dx // beta) * a//2
             cy = dy // 2 + (dy // beta) * b//2
             ls[i] = ['q', str(cx+1), str(cy+1), str(dx), str(dy)]
@@ -71,7 +71,7 @@ def glphyProcessing(s1, s2, ls):
     #     print(num,n,num%n)
     partition=num%n
     partition2=(partition+1)%n
-    new = list2xml(tilt(Smooth(process(path(old), ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2])),0.2))
+    new = list2xml(process(path(old), ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2]))
     # print(old,new)
     tree.getroot()[0].attrib['d'] = new
     tree.write(s2)

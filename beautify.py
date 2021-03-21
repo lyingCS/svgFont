@@ -20,10 +20,10 @@ def Smooth(ls):
     while i<len(ls)-1:
 #         print(i)
         if ls[i][0]=='q' and ls[i+1][0]=='q':
-            dx1=int(ls[i][3])
-            dy1=int(ls[i][4])
-            dx2=int(ls[i+1][3])
-            dy2=int(ls[i+1][4])
+            dx1=eval(ls[i][3])
+            dy1=eval(ls[i][4])
+            dx2=eval(ls[i+1][3])
+            dy2=eval(ls[i+1][4])
 #             print(dx1,dy1,dx2,dy2)
             if dx1<=0 and dx2>=0 and dy1>=0 and dy2<=0:
                 ang1=math.atan2(dy1,-dx1)
@@ -96,17 +96,17 @@ def tilt(ls, a):
     #     print(dx,dy)
     for i in range(len(ls)):
         if ls[i][0] == 'q':
-            ddx = int(ls[i][1])-int(ls[i][2])*a
-            dx = int(ls[i][3])-int(ls[i][4])*a
+            ddx = eval(ls[i][1])-eval(ls[i][2])*a
+            dx = eval(ls[i][3])-eval(ls[i][4])*a
             ls[i][1] = str(ddx)
             ls[i][3] = str(dx)
         elif ls[i][0]=='M':
-            dx=int(ls[i][1])-int(ls[i][2])*a
+            dx=eval(ls[i][1])-eval(ls[i][2])*a
             ls[i][1]=str(dx)
         elif ls[i][0]=='c':
-            cx1=int(ls[i][1])-int(ls[i][2])*a
-            cx2=int(ls[i][3])-int(ls[i][4])*a
-            dx=int(ls[i][5])-int(ls[i][6])*a
+            cx1=eval(ls[i][1])-eval(ls[i][2])*a
+            cx2=eval(ls[i][3])-eval(ls[i][4])*a
+            dx=eval(ls[i][5])-eval(ls[i][6])*a
             ls[i][1]=str(cx1)
             ls[i][3]=str(cx2)
             ls[i][5]=str(dx)

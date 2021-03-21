@@ -10,7 +10,7 @@ svg_path = scriptDir+"/svg"
 svg_out_path = scriptDir+"/svg_out"
 svg_ver_path = scriptDir+"/svg_ver"
 
-old_font_path=scriptDir+'/fz.ttf'
+old_font_path=scriptDir+'/fz.TTF'
 new_font_path=scriptDir+'/out.ttf'
 verify_font_path=scriptDir+'/out.ttf'
 
