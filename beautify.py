@@ -100,7 +100,7 @@ def tilt(ls, a):
             dx = eval(ls[i][3])-eval(ls[i][4])*a
             ls[i][1] = str(ddx)
             ls[i][3] = str(dx)
-        elif ls[i][0]=='M':
+        elif ls[i][0]=='M' or ls[i][0]=='t':
             dx=eval(ls[i][1])-eval(ls[i][2])*a
             ls[i][1]=str(dx)
         elif ls[i][0]=='c':
@@ -110,4 +110,42 @@ def tilt(ls, a):
             ls[i][1]=str(cx1)
             ls[i][3]=str(cx2)
             ls[i][5]=str(dx)
+    return ls
+
+def thin(ls,a):
+    for i in range(len(ls)):
+        if ls[i][0] == 'q':
+            ddx = eval(ls[i][1])*a
+            dx = eval(ls[i][3])*a
+            ls[i][1] = str(ddx)
+            ls[i][3] = str(dx)
+        elif ls[i][0]=='M' or ls[i][0]=='t':
+            dx=eval(ls[i][1])*a
+            ls[i][1]=str(dx)
+        elif ls[i][0]=='c':
+            cx1=eval(ls[i][1])*a
+            cx2=eval(ls[i][3])*a
+            dx=eval(ls[i][5])*a
+            ls[i][1]=str(cx1)
+            ls[i][3]=str(cx2)
+            ls[i][5]=str(dx)
+    return ls
+
+def flat(ls,a):
+    for i in range(len(ls)):
+        if ls[i][0] == 'q':
+            ddy = eval(ls[i][2])*a
+            dy = eval(ls[i][4])*a
+            ls[i][2] = str(ddy)
+            ls[i][4] = str(dy)
+        elif ls[i][0]=='M' or ls[i][0]=='t':
+            dy=eval(ls[i][2])*a
+            ls[i][2]=str(dy)
+        elif ls[i][0]=='c':
+            cy1=eval(ls[i][2])*a
+            cy2=eval(ls[i][4])*a
+            dy=eval(ls[i][6])*a
+            ls[i][2]=str(cy1)
+            ls[i][4]=str(cy2)
+            ls[i][6]=str(dy)
     return ls

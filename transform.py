@@ -28,8 +28,8 @@ def process(ls, a, b, c, d):
             dy = eval(ls[i][4])
             ddx = (dx // alpha) * a//2
             ddy = (dy // alpha) * b//2
-            ls[i][1] = str(eval(ls[i][1]) + ddx+1)
-            ls[i][2] = str(eval(ls[i][2]) + ddy+1)
+            ls[i][1] = str(eval(ls[i][1]) + ddx)
+            ls[i][2] = str(eval(ls[i][2]) + ddy)
         elif ls[i][0] == 'h':
             dx = eval(ls[i][1])
             dy = 0
@@ -37,7 +37,7 @@ def process(ls, a, b, c, d):
             cx2=dx-cx1
             cy1 = (dx // beta) * (b-8)
             cy2=-cy1
-            ls[i] = ['c',str(cx1), str(-cy1+1), str(cx2),str(-cy2+1),str(dx), str(dy)]
+            ls[i] = ['c',str(cx1), str(cy1), str(cx2),str(cy2),str(dx), str(dy)]
         elif ls[i][0] == 'v':
             dx = 0
             dy = eval(ls[i][1])
@@ -45,13 +45,13 @@ def process(ls, a, b, c, d):
             cx2=-cx1
             cy1 = dy // (2+c)
             cy2 = dy-cy1
-            ls[i] = ['c', str(cx1+1), str(cy1), str(cx2+1),str(cy2),str(dx), str(dy)]
+            ls[i] = ['c', str(cx1), str(cy1), str(cx2),str(cy2),str(dx), str(dy)]
         elif (ls[i][0] == 'l'):
             dx = eval(ls[i][1])
             dy = eval(ls[i][2])
             cx = dx // 2 + (dx // beta) * a//2
             cy = dy // 2 + (dy // beta) * b//2
-            ls[i] = ['q', str(cx+1), str(cy+1), str(dx), str(dy)]
+            ls[i] = ['q', str(cx), str(cy), str(dx), str(dy)]
 
     return ls
 
