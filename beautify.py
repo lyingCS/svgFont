@@ -15,7 +15,9 @@ def unbeautifySmooth(ls):
             j += 1
     return ls
 
-def prolong(ls,a):
+def prolong(ls,a,uni):
+    if uni<3406:
+        return ls
     for i in range(len(ls)-1):
         if ls[i][0]=='q' and ls[i+1][0]=='q':
             dx1=eval(ls[i][3])
@@ -23,12 +25,11 @@ def prolong(ls,a):
             dx2=eval(ls[i+1][3])
             dy2=eval(ls[i+1][4])
             if dx1>0 and dy1>0 and dx2<0 and dy2>0:
-                ddx1=a*dx1
+                ddx1=a*dx1/16
                 dx1=dx1+ddx1
                 dx2=dx2-ddx1
                 ls[i][3]=str(dx1)
                 ls[i+1][3]=str(dx2)
-
     return ls
 
 def Smooth(ls):
