@@ -71,7 +71,8 @@ def glphyProcessing(s1, s2, ls):
     #     print(num,n,num%n)
     partition=num%n
     partition2=(partition+1)%n
-    new = list2xml(process(path(old), ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2]))
+    # new = list2xml(process(path(old), ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2]))
+    new = list2xml(prolong(path(old), 0.5))
     # print(old,new)
     tree.getroot()[0].attrib['d'] = new
     tree.write(s2)
