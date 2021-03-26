@@ -7,7 +7,7 @@ import os
 
 def getInfo(text):
     tree = ET.parse(text)
-    return tree.getroot()[0].attrib['d']
+    return tree.getroot()[0][0].attrib['d']
 
 def path(s):
     ret = [['M']]
@@ -65,7 +65,7 @@ def list2xml(ls):
 
 def glphyProcessing(s1, s2, ls):
     tree = ET.parse(s1)
-    old = tree.getroot()[0].attrib['d']
+    old = tree.getroot()[0][0].attrib['d']
     num = int(s1.split('_')[0].split('/')[-1])
     n = len(ls[0])
     #     print(num,n,num%n)
@@ -73,8 +73,7 @@ def glphyProcessing(s1, s2, ls):
     partition2=(partition+1)%n
     partition3=(partition+2)%n
     new = list2xml(process(prolong(path(old),1,num), ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2]))
-    # print(old,new)
-    tree.getroot()[0].attrib['d'] = new
+    tree.getroot()[0][0].attrib['d'] = new
     tree.write(s2)
 
 
@@ -100,7 +99,7 @@ def allProcessing(sign):
             root = tree.getroot()
             # print(file_name)
             for child in root:
-                if ('d' in child.attrib.keys()):
+                if ('d' in child[0].keys()):
                     glphyProcessing(inPath, outPath,signList)
                 else:
                     res = open(inPath)

@@ -2,7 +2,7 @@ import sys
 import inspect, os
 scriptDir=os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 fontName = "Myfont"
-ff_work_directory = "D:/Program Files/FontForgeBuilds/bin"  #! change this into your bin path
+#ff_work_directory = "D:/Program Files/FontForgeBuilds/bin"  #! change this into your bin path
 key = "3312280576@qq.com张昌硕"          # here key is just an email addr
 
 ext='svg'
