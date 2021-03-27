@@ -21,7 +21,8 @@ def path(s):
 
 
 def process(ls, a, b, c, d):
-    for i in range(len(ls)):
+    i=0
+    while i < len(ls):
         if ls[i][0] == 'q':
             dx = eval(ls[i][3])
             dy = eval(ls[i][4])
@@ -55,7 +56,7 @@ def process(ls, a, b, c, d):
             cx = dx // 2 + (dx // beta) * a//2
             cy = dy // 2 + (dy // beta) * b//2
             ls[i] = ['q', str(cx), str(cy), str(dx), str(dy)]
-
+        i=i+1
     return ls
 
 def list2xml(ls):
