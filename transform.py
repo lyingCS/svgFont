@@ -21,7 +21,6 @@ def path(s):
 
 
 def process(ls, a, b, c, d):
-    #     print(dx,dy)
     for i in range(len(ls)):
         if ls[i][0] == 'q':
             dx = eval(ls[i][3])
@@ -71,12 +70,18 @@ def glphyProcessing(s1, s2, ls):
     old = tree.getroot()[0].attrib['d']
     num = int(s1.split('_')[0].split('/')[-1])
     n = len(ls[0])
-    #     print(num,n,num%n)
     partition=num%n
     partition2=(partition+1)%n
     partition3=(partition+2)%n
-    new = list2xml(process(prolong(path(old),16,num), ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2]))
-    # print(old,new)
+    partition4=(partition+3)%n
+    partition5=(partition+4)%n
+    old_path=path(old)
+    prolong(old_path,ls[0][partition3]*2,num)
+    process(old_path, ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2])
+    #thin(old_path, 0.8)
+    #flat(old_path, 0.8)
+    tilt(old_path, 0.2)
+    new = list2xml(old_path)
     tree.getroot()[0].attrib['d'] = new
     tree.write(s2)
 
@@ -101,7 +106,6 @@ def allProcessing(sign):
             outPath=svg_out_path+'/'+file_name
             tree = ET.parse(inPath)
             root = tree.getroot()
-            # print(file_name)
             for child in root:
                 if ('d' in child.attrib.keys()):
                     glphyProcessing(inPath, outPath,signList)
