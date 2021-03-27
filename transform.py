@@ -37,7 +37,9 @@ def process(ls, a, b, c, d):
             cx2=dx-cx1
             cy1 = (dx // beta) * (b-8)
             cy2=-cy1
-            ls[i] = ['c',str(cx1), str(cy1), str(cx2),str(cy2),str(dx), str(dy)]
+            ls[i] = ['q',str(cx1), str(cy1),str(dx//2), str(dy)]
+            ls.insert(i+1, ['q',str(cx2-dx//2), str(cy2),str(dx-dx//2), str(dy)])
+            i=i+1
         elif ls[i][0] == 'v':
             dx = 0
             dy = eval(ls[i][1])
@@ -45,7 +47,9 @@ def process(ls, a, b, c, d):
             cx2=-cx1
             cy1 = dy // (2+c)
             cy2 = dy-cy1
-            ls[i] = ['c', str(cx1), str(cy1), str(cx2),str(cy2),str(dx), str(dy)]
+            ls[i] = ['q', str(cx1), str(cy1),str(dx), str(dy//2)]
+            ls.insert(i+1,['q', str(cx2),str(cy2-dy//2),str(dx), str(dy-dy//2)])
+            i=i+1
         elif (ls[i][0] == 'l'):
             dx = eval(ls[i][1])
             dy = eval(ls[i][2])
