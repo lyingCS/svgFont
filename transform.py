@@ -33,7 +33,7 @@ def process(ls, a, b, c, d):
         elif ls[i][0] == 'h':
             dx = eval(ls[i][1])
             dy = 0
-            cx1 = dx // (2+d)
+            cx1 = dx // (3+d)
             cx2=dx-cx1
             cy1 = (dx // beta) * (b-8)
             cy2=-cy1
@@ -45,7 +45,7 @@ def process(ls, a, b, c, d):
             dy = eval(ls[i][1])
             cx1 = (dy // beta) * (a-8)
             cx2=-cx1
-            cy1 = dy // (2+c)
+            cy1 = dy // (3+c)
             cy2 = dy-cy1
             ls[i] = ['q', str(cx1), str(cy1),str(dx), str(dy//2)]
             ls.insert(i+1,['q', str(cx2),str(cy2-dy//2),str(dx), str(dy-dy//2)])
@@ -79,8 +79,8 @@ def glphyProcessing(s1, s2, ls):
     old_path=path(old)
     prolong(old_path,ls[0][partition3]*2,num)
     process(old_path, ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2])
-    #thin(old_path, 0.8)
-    #flat(old_path, 0.8)
+    thin(old_path, 0.8)
+    flat(old_path, 0.8)
     tilt(old_path, 0.2)
     new = list2xml(old_path)
     tree.getroot()[0].attrib['d'] = new
