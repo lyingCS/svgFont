@@ -4,7 +4,7 @@ from myUtils import *
 import os
 
 cwd=os.getcwd()
-os.chdir(ff_work_directory)
+#os.chdir(ff_work_directory)
 import fontforge
 os.chdir(cwd)
 
