@@ -16,7 +16,7 @@ def unbeautifySmooth(ls):
     return ls
 
 def prolong(ls,a,uni):
-    if uni<3406:
+    if uni<19968 or uni>58368:
         return ls
     for i in range(len(ls)-1):
         if ls[i][0]=='q' and ls[i+1][0]=='q':

@@ -19,7 +19,7 @@ def path(s):
             lasi = i + 1
     return ret
 
-def process(ls, a, b, c, d):
+def process(ls, a, b, c, d, e, f):
     i=0
     while i < len(ls):
         if ls[i][0] == 'q':
@@ -32,23 +32,47 @@ def process(ls, a, b, c, d):
         elif ls[i][0] == 'h':
             dx = eval(ls[i][1])
             dy = 0
-            cx1 = dx // (3+d)
-            cx2=dx-cx1
-            cy1 = (dx // beta) * (b-8)
-            cy2=-cy1
-            ls[i] = ['q',str(cx1), str(cy1),str(dx//2), str(dy)]
-            ls.insert(i+1, ['q',str(cx2-dx//2), str(cy2),str(dx-dx//2), str(dy)])
-            i=i+1
+            if e>8:
+                cx1 = dx // (3+d)
+                cy1 = (dx // beta) * (b-8)
+                if abs(cy1)>abs(cx1):
+                    cy1=(b-8)/abs(b-8)*cx1
+                cx2=dx-cx1
+                cy2=-cy1
+                ls[i] = ['q',str(cx1), str(cy1),str(dx//2), str(dy)]
+                ls.insert(i+1, ['q',str(cx2-dx//2), str(cy2),str(dx-dx//2), str(dy)])
+                i=i+1
+            else:
+                if dx>0:
+                    cx=dx*(e+1)/10
+                else:
+                    cx=dx-dx*(e+1)/10
+                cy=abs(dx)//beta*(b-8)
+                if abs(cy)>min(abs(cx),abs(dx)-abs(cx)):
+                    cy=(b-8)/abs(b-8)*min(abs(cx),abs(dx)-abs(cx))
+                ls[i]=['q',str(cx),str(cy),str(dx),str(dy)]
         elif ls[i][0] == 'v':
             dx = 0
             dy = eval(ls[i][1])
-            cx1 = (dy // beta) * (a-8)
-            cx2=-cx1
-            cy1 = dy // (3+c)
-            cy2 = dy-cy1
-            ls[i] = ['q', str(cx1), str(cy1),str(dx), str(dy//2)]
-            ls.insert(i+1,['q', str(cx2),str(cy2-dy//2),str(dx), str(dy-dy//2)])
-            i=i+1
+            if f>8:
+                cx1 = (dy // beta) * (a-8)
+                cy1 = dy // (3+c)
+                if abs(cx1)>abs(cy1):
+                    cx1=(a-8)/abs(a-8)*cy1
+                cx2=-cx1
+                cy2 = dy-cy1
+                ls[i] = ['q', str(cx1), str(cy1),str(dx), str(dy//2)]
+                ls.insert(i+1,['q', str(cx2),str(cy2-dy//2),str(dx), str(dy-dy//2)])
+                i=i+1
+            else:
+                cx=abs(dy)//beta*(a-8)
+                if dy>0:
+                    cy=dy*(f+1)/10
+                else:
+                    cy=dy-dy*(f+1)/10
+                if abs(cx)>min(abs(cy),abs(dy)-abs(cy)):
+                    cx=min(abs(cy),abs(dy)-abs(cy))*(a-8)/abs(a-8)
+                ls[i]=['q',str(cx),str(cy),str(dx),str(dy)]
         elif (ls[i][0] == 'l'):
             dx = eval(ls[i][1])
             dy = eval(ls[i][2])
@@ -77,7 +101,7 @@ def glphyProcessing(s1, s2, ls):
     partition5=(partition+4)%n
     old_path=path(old)
     prolong(old_path,ls[0][partition3]*2,num)
-    process(old_path, ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2])
+    process(old_path, ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2], ls[0][partition3], ls[1][partition3])
     thin(old_path, 1-ls[0][0]/70)
     flat(old_path, 1-ls[1][0]/70)
     tilt(old_path, ls[0][1]/70)
