@@ -19,7 +19,6 @@ def path(s):
             lasi = i + 1
     return ret
 
-
 def process(ls, a, b, c, d):
     i=0
     while i < len(ls):
@@ -79,9 +78,9 @@ def glphyProcessing(s1, s2, ls):
     old_path=path(old)
     prolong(old_path,ls[0][partition3]*2,num)
     process(old_path, ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2])
-    thin(old_path, 0.8)
-    flat(old_path, 0.8)
-    tilt(old_path, 0.2)
+    thin(old_path, 1-ls[0][0]/70)
+    flat(old_path, 1-ls[1][0]/70)
+    tilt(old_path, ls[0][1]/70)
     new = list2xml(old_path)
     tree.getroot()[0].attrib['d'] = new
     tree.write(s2)

@@ -35,17 +35,14 @@ def prolong(ls,a,uni):
 def Smooth(ls):
     i=0
     while i<len(ls)-1:
-#         print(i)
         if ls[i][0]=='q' and ls[i+1][0]=='q':
             dx1=eval(ls[i][3])
             dy1=eval(ls[i][4])
             dx2=eval(ls[i+1][3])
             dy2=eval(ls[i+1][4])
-#             print(dx1,dy1,dx2,dy2)
             if dx1<=0 and dx2>=0 and dy1>=0 and dy2<=0:
                 ang1=math.atan2(dy1,-dx1)
                 ang2=math.atan2(-dy2,dx2)
-#                 print(ang1,ang2)
                 if(ang1>ang2):
                     ldx=dx2//gama
                     ldy=dy1//gama
@@ -61,7 +58,6 @@ def Smooth(ls):
             elif dx1>=0 and dx2<=0 and dy1>=0 and dy2<=0:
                 ang1=math.atan2(dy1,-dx1)
                 ang2=math.atan2(-dy2,dx2)
-#                 print(ang1,ang2)
                 if(ang1>ang2):
                     ldx=dx1//gama
                     ldy=(-dy2)//gama
@@ -77,7 +73,6 @@ def Smooth(ls):
             elif dx1>=0 and dy1<=0 and dx2<=0 and dy2>=0:
                 ang1=math.atan2(-dy1,dx1)
                 ang2=math.atan2(dy2,-dx2)
-#                 print(ang1,ang2)
                 if(ang1>ang2):
                     ldx=(-dx2)//gama
                     ldy=dy1//gama
@@ -93,7 +88,6 @@ def Smooth(ls):
             elif dx1<=0 and dy1<=0 and dx2>=0 and dy2>=0:
                 ang1=math.atan2(-dy1,-dx1)
                 ang2=math.atan2(dy2,dx2)
-#                 print(ang1,ang2)
                 if(ang1>ang2):
                     ldx=(dx2)//gama
                     ldy=(-dy1)//gama
@@ -110,7 +104,6 @@ def Smooth(ls):
     return ls
 
 def tilt(ls, a):
-    #     print(dx,dy)
     for i in range(len(ls)):
         if ls[i][0] == 'q':
             ddx = eval(ls[i][1])-eval(ls[i][2])*a
