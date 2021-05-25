@@ -6,10 +6,12 @@ import xml.etree.ElementTree as ET
 import os
 
 def getInfo(text):
+    #该函数根据文件名字符串得到字形的信息
     tree = ET.parse(text)
     return tree.getroot()[0].attrib['d']
 
 def path(s):
+    #该函数解析getInfo得到的x字形信息把每一条指令分开放到一个List中
     ret = [['M']]
     lasi = 1
     for i in range(1, len(s)):
@@ -20,6 +22,7 @@ def path(s):
     return ret
 
 def process(ls, a, b, c, d, e, f):
+    #该函数对path函数d操作得到的List进行变换得到变换后的List
     i=0
     while i < len(ls):
         if ls[i][0] == 'q':
@@ -83,6 +86,7 @@ def process(ls, a, b, c, d, e, f):
     return ls
 
 def list2xml(ls):
+    #是path函数的逆过程，即把List转换为字形信息存储到svg中去
     ret = ""
     for i in ls:
         ret += " ".join(i)
@@ -90,6 +94,7 @@ def list2xml(ls):
 
 
 def glphyProcessing(s1, s2, ls):
+    #给定需要变化的文件位置和变换后文件位置，通过ls（SM3签名预处理得到的List）作为参数进行字形变换
     tree = ET.parse(s1)
     old = tree.getroot()[0].attrib['d']
     num = int(s1.split('_')[0].split('/')[-1])
@@ -111,6 +116,7 @@ def glphyProcessing(s1, s2, ls):
 
 
 def sign2ls(s):
+    #把SM3签名转换为List方便字形变换
     n = len(s)
     lsx = []
     lsy = []
@@ -122,6 +128,7 @@ def sign2ls(s):
 
 
 def allProcessing(sign):
+    #对svg文件夹下所有文件调用glphyProcessing进行字符h变换
     g = os.walk(svg_path)
     signList = sign2ls(sign)
     for path, dir_list, file_list in g:
