@@ -1,4 +1,5 @@
 #conding=utf8
+
 from myConfig import *
 from myUtils import *
 from beautify import *
@@ -21,6 +22,7 @@ def path(s):
 
 def process(ls, a, b, c, d, e, f):
     i=0
+#    print(ls)
     while i < len(ls):
         if ls[i][0] == 'q':
             dx = eval(ls[i][3])
@@ -80,6 +82,7 @@ def process(ls, a, b, c, d, e, f):
             cy = dy // 2 + (dy // beta) * b//2
             ls[i] = ['q', str(cx), str(cy), str(dx), str(dy)]
         i=i+1
+#    print(ls)
     return ls
 
 def list2xml(ls):
@@ -91,7 +94,7 @@ def list2xml(ls):
 
 def glphyProcessing(s1, s2, ls):
     tree = ET.parse(s1)
-    old = tree.getroot()[0].attrib['d']
+    old = tree.getroot()[0][0].attrib['d']
     num = int(s1.split('_')[0].split('/')[-1])
     n = len(ls[0])
     partition=num%n
@@ -106,7 +109,7 @@ def glphyProcessing(s1, s2, ls):
     flat(old_path, 1-ls[1][0]/70)
     tilt(old_path, ls[0][1]/70)
     new = list2xml(old_path)
-    tree.getroot()[0].attrib['d'] = new
+    tree.getroot()[0][0].attrib['d'] = new
     tree.write(s2)
 
 
@@ -131,7 +134,7 @@ def allProcessing(sign):
             tree = ET.parse(inPath)
             root = tree.getroot()
             for child in root:
-                if ('d' in child.attrib.keys()):
+                if ('d' in child[0].attrib.keys()):
                     glphyProcessing(inPath, outPath,signList)
                 else:
                     res = open(inPath)

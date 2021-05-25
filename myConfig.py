@@ -22,7 +22,7 @@ gama = 10
 leng=len(sys.argv)
 if(leng>1):
 	key=sys.argv[1]
-	fontName=key
+	old_font_path='./'+str(key)+'.ttf'
 if(leng>2):
 	new_font_path=sys.argv[2]
 	verify_font_path=sys.argv[2]

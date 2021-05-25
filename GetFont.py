@@ -27,8 +27,8 @@ if __name__ == '__main__':
 	print("Your Digest: "+digest)
 
 	oT=time()
-	#export()
-	#print("Export: "+str(time()-oT))
+	export()
+	print("Export: "+str(time()-oT))
 
 	# digest=['0' for i in range(64)]
 	oT=time()
