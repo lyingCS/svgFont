@@ -51,6 +51,7 @@ def process(ls, a, b, c, d, e, f):
                 else:
                     cx=dx-dx*(e+1)/10
                 cy=abs(dx)//beta*(b-8)
+                # 下面这个是为了防止染色出错限制在45度以内
                 if abs(cy)>min(abs(cx),abs(dx)-abs(cx)):
                     cy=(b-8)/abs(b-8)*min(abs(cx),abs(dx)-abs(cx))
                 ls[i]=['q',str(cx),str(cy),str(dx),str(dy)]
@@ -73,6 +74,7 @@ def process(ls, a, b, c, d, e, f):
                     cy=dy*(f+1)/10
                 else:
                     cy=dy-dy*(f+1)/10
+                # 下面这个是为了防止染色出错限制在45度以内
                 if abs(cx)>min(abs(cy),abs(dy)-abs(cy)):
                     cx=min(abs(cy),abs(dy)-abs(cy))*(a-8)/abs(a-8)
                 ls[i]=['q',str(cx),str(cy),str(dx),str(dy)]
@@ -105,10 +107,16 @@ def glphyProcessing(s1, s2, ls):
     partition4=(partition+3)%n
     partition5=(partition+4)%n
     old_path=path(old)
+    #下面进行四种i变换（注意顺序不能调换）
+    # 延长右撇
     prolong(old_path,ls[0][partition3]*2,num)
+    # 改变字形
     process(old_path, ls[0][partition], ls[1][partition], ls[0][partition2], ls[1][partition2], ls[0][partition3], ls[1][partition3])
+    # 字体变瘦
     thin(old_path, 1-ls[0][0]/70)
+    # 字体变扁
     flat(old_path, 1-ls[1][0]/70)
+    # 字体i倾斜
     tilt(old_path, ls[0][1]/70)
     new = list2xml(old_path)
     tree.getroot()[0].attrib['d'] = new
